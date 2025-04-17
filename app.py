@@ -19,7 +19,7 @@ st.markdown(
 )
 # Streamlit setup
 st.set_page_config(page_title="Downly", page_icon="▶️")
-st.title(<h1 style='text-align: center;'>"Downly"</h1> unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>Downly</h1>", unsafe_allow_html=True)
 st.caption("Download videos or extract MP3 audio from YouTube, instagram, and more — fast, easy, and hassle-free!")
 
 # Detect OS and handle FFmpeg setup
