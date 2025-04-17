@@ -4,14 +4,27 @@ import os
 import subprocess
 import platform
 
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-image: url("https://raw.githubusercontent.com/BKY1601/downly/main/res/img/bg.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 # Streamlit setup
-st.set_page_config(page_title="Video Downloader", page_icon="▶️")
-st.title("Universal Video Downloader")
-st.caption("Supports YouTube, Vimeo, and more using yt-dlp + ffmpeg")
+st.set_page_config(page_title="Downly", page_icon="▶️")
+st.title(<h1 style='text-align: center;'>"Downly"</h1> unsafe_allow_html=True)
+st.caption("Download videos or extract MP3 audio from YouTube, instagram, and more — fast, easy, and hassle-free!")
 
 # Detect OS and handle FFmpeg setup
 if platform.system() == "Windows":
-    FFMPEG_PATH = "ffmpeg"
+    FFMPEG_PATH = "ffmpeg" #if not detecting add winodws ffmeg folder path manually os.path.abspath
 else:
     with st.spinner("Ensuring FFmpeg is installed..."):
         subprocess.run(["apt-get", "update"], check=False)
