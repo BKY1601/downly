@@ -9,19 +9,14 @@ st.set_page_config(page_title="Video Downloader", page_icon="▶️")
 st.title("Universal Video Downloader")
 st.caption("Supports YouTube, Vimeo, and more using yt-dlp + ffmpeg")
 
-# Detect OS and set FFmpeg path
+# Detect OS and handle FFmpeg setup
 if platform.system() == "Windows":
-    # Uncomment below if running locally on Windows
-    # FFMPEG_PATH = os.path.abspath("res/ffmpeg-7.1.1-full_build/bin/ffmpeg.exe")
-    FFMPEG_PATH = "ffmpeg"  # Fallback for non-usage
+    FFMPEG_PATH = "ffmpeg"
 else:
-    FFMPEG_PATH = "/usr/bin/ffmpeg"  # Standard path for Linux/Streamlit Cloud
-
-# Install FFmpeg on Streamlit Cloud if needed
-if platform.system() == "Linux" and not os.path.exists(FFMPEG_PATH):
-    with st.spinner("Installing FFmpeg..."):
+    with st.spinner("Ensuring FFmpeg is installed..."):
         subprocess.run(["apt-get", "update"], check=False)
         subprocess.run(["apt-get", "install", "-y", "ffmpeg"], check=False)
+    FFMPEG_PATH = "/usr/bin/ffmpeg"
 
 # Initialize session state
 if 'video_info' not in st.session_state:
@@ -105,12 +100,11 @@ if st.session_state.video_info:
                         'preferredcodec': 'mp3',
                         'preferredquality': '192',
                     }],
-                    'outtmpl': f'{output_dir}/%(title)s.%(ext)s',
+                    'prefer_ffmpeg': True
                 })
             elif download_type == "MP4 (Best Video)":
                 ydl_opts.update({
                     'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4',
-                    'outtmpl': f'{output_dir}/%(title)s.mp4',
                 })
             elif download_type == "Other (custom)" and selected_format_id:
                 ydl_opts.update({
@@ -123,6 +117,8 @@ if st.session_state.video_info:
                     filename = ydl.prepare_filename(result)
                     base_filename = os.path.basename(filename)
 
+                st.write("Downloaded raw file:", filename)
+
                 if download_type == "MP3 (Audio)":
                     mp3_filename = None
                     possible_exts = ('.webm', '.mp4', '.m4a', '.mkv')
@@ -132,6 +128,8 @@ if st.session_state.video_info:
                             break
                     if filename.endswith('.mp3'):
                         mp3_filename = filename
+
+                    st.write("Expected MP3 filename:", mp3_filename)
 
                     if mp3_filename and os.path.exists(mp3_filename):
                         st.success("MP3 Download complete!")
