@@ -145,7 +145,7 @@ if st.session_state.video_info:
                     st.write("Expected MP3 filename:", mp3_filename)
 
                     if mp3_filename and os.path.exists(mp3_filename):
-                        st.success("MP3 Download complete!")
+                        st.success("MP3 Ready for Download!")
                         with open(mp3_filename, "rb") as f:
                             st.download_button(
                                 label="Click here to download the MP3 file",
@@ -161,7 +161,7 @@ if st.session_state.video_info:
 
                 elif download_type == "MP4 (Best Video)":
                     if os.path.exists(filename):
-                        st.success("MP4 Download complete!")
+                        st.success("MP4 Ready for Download!")
                         with open(filename, "rb") as f:
                             st.download_button(
                                 label="Click here to download the MP4 file",
@@ -175,7 +175,7 @@ if st.session_state.video_info:
 
                 elif download_type == "Other (custom)":
                     if os.path.exists(filename):
-                        st.success("Custom Format Download complete!")
+                        st.success("Custom Format Ready for Download!")
                         ext = os.path.splitext(filename)[1].lower()
                         mime_type = "application/octet-stream"
                         if ext in [".mp4", ".mkv", ".webm"]:
