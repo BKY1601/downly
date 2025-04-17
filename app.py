@@ -5,8 +5,7 @@ import subprocess
 import platform
 
 st.set_page_config(page_title="Downly", page_icon="▶️")
-st.markdown(
-    """
+page_bg_img= '''
     <style>
     .stApp {
         background-image: url("https://raw.githubusercontent.com/BKY1601/downly/main/res/img/bg.png");
@@ -15,9 +14,9 @@ st.markdown(
         background-attachment: fixed;
     }
     </style>
-    """,
-    unsafe_allow_html=True
-)
+    '''
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
 # Streamlit setup
 st.markdown("<h1 style='text-align: center;'>Downly</h1>", unsafe_allow_html=True)
 st.caption("Download videos or extract MP3 audio from YouTube, instagram, and more — fast, easy, and hassle-free!")
