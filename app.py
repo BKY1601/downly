@@ -9,10 +9,15 @@ st.set_page_config(page_title="Video Downloader", page_icon="▶️")
 st.title("Universal Video Downloader")
 st.caption("Supports YouTube, Vimeo, and more using yt-dlp + ffmpeg")
 
-# Set FFmpeg path manually (Windows)
-FFMPEG_PATH = os.path.abspath("res/ffmpeg-7.1.1-full_build/bin/ffmpeg.exe")
+# Detect OS and set FFmpeg path
+if platform.system() == "Windows":
+    # Uncomment below if running locally on Windows
+    # FFMPEG_PATH = os.path.abspath("res/ffmpeg-7.1.1-full_build/bin/ffmpeg.exe")
+    FFMPEG_PATH = "ffmpeg"  # Fallback for non-usage
+else:
+    FFMPEG_PATH = "/usr/bin/ffmpeg"  # Standard path for Linux/Streamlit Cloud
 
-# Check if FFmpeg is available for Linux (for Streamlit Cloud)
+# Install FFmpeg on Streamlit Cloud if needed
 if platform.system() == "Linux" and not os.path.exists(FFMPEG_PATH):
     with st.spinner("Installing FFmpeg..."):
         subprocess.run(["apt-get", "update"], check=False)
