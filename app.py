@@ -19,7 +19,7 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 
 # Streamlit setup
 st.markdown("<h1 style='text-align: center;'>Downly</h1>", unsafe_allow_html=True)
-st.markdown("Download videos or extract MP3 audio from YouTube, instagram, and more — fast, easy, and hassle-free!")
+st.markdown("*Download videos or extract MP3 audio from YouTube, instagram, and more — fast, easy, and hassle-free!*")
 
 # Detect OS and handle FFmpeg setup
 if platform.system() == "Windows":
@@ -37,9 +37,7 @@ if 'video_info' not in st.session_state:
 
 # Input for video URL
 url = st.text_input("Enter Video URL")
-col1, col2, col3 = st.columns([1, 1, 1])
-with col2:
-    continue_clicked = st.button(" ➜ ")
+continue_clicked = st.button(" ➜ ")
 
 # Fetch video info
 if url and continue_clicked:
