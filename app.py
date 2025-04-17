@@ -11,7 +11,7 @@ page_bg_img= '''
         background-image: url("https://raw.githubusercontent.com/BKY1601/downly/main/res/img/bg.jpg");
         background-size: cover;
         background-repeat: no-repeat;
-        background-attachment: fixed;
+        background-attachment: local;
     }
     </style>
     '''
