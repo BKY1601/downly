@@ -8,7 +8,7 @@ st.set_page_config(page_title="Downly", page_icon="▶️")
 page_bg_img= '''
     <style>
     .stApp {
-        background-image: url("https://raw.githubusercontent.com/BKY1601/downly/main/res/img/bg.png");
+        background-image: url("https://raw.githubusercontent.com/BKY1601/downly/main/res/img/bg.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
